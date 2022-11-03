@@ -1,8 +1,20 @@
 const container = document.querySelector('.drawingBoard');
 const color = document.querySelector('.color');
 const radio = document.querySelector('.radio')
-let p = document.querySelector('p')
 
+
+let mousedown = false;
+document.addEventListener('mousedown', function () {
+    mousedown = true;
+})
+document.addEventListener('mouseup', function () {
+    mousedown = false;
+})
+
+let col;
+color.addEventListener('change', function (e) {
+    col = this.value;
+})
 
 
 function getLength() {
@@ -25,9 +37,19 @@ function draw(length) {
         let div = document.createElement('div');
         div.classList.add('box')
         container.appendChild(div)
+        div.addEventListener('mouseenter', () => {
+            if (mousedown) {
+                if (col) {
+                    div.style.background = `${col}`
+                }
+            } else {
+                return;
+            }
+        })
 
     }
 }
+
 
 function setGrid(size) {
     container.style.display = 'grid';

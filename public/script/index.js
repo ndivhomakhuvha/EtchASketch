@@ -1,63 +1,37 @@
-const boxSize = document.getElementById('boxSize');
-let drawingBoard = document.querySelector('.drawingBoard');
-let colorPicker = document.querySelector('.color')
-let color;
-
-function Draw() {
-
-}
-document.addEventListener('mousedown', () => {
-    return true;
-})
+const container = document.querySelector('.drawingBoard');
+const color = document.querySelector('.color');
+const radio = document.querySelector('.radio')
+let p = document.querySelector('p')
 
 
 
-function Erase() {
-
+function getLength() {
+    radio.addEventListener('change', changeLength);
+    setGrid(80);
 }
 
-// Create Board
-function checkEvent() {
-
-}
-
-function isMouseDown() {
-
-}
-
-boxSize.addEventListener('change', (e) => {
-    let value = Number(e.target.value);
-
-    switch (value) {
-        case 1:
-            createBoard(600, '20px', '20px');
-            break;
-        case 2:
-            createBoard(600, '25px', '25px');
-            break;
-        default:
-            createBoard(600, '30px', '30px');
-            break;
-    }
-})
-let div;
-function createBoard(nBlocks, height, width) {
-    drawingBoard.textContent = '';
-    for (let i = 0; i < nBlocks; i++) {
-        div = document.createElement('div');
-        div.style.height = height;
-        div.style.width = width;
-        div.style.border = '1px solid black';
-        drawingBoard.appendChild(div);
-        div.addEventListener('mousedown', changeColor);
-        div.addEventListener('mouseover',changeColor)
+function changeLength() {
+    if (this.checked) {
+        let length = 80;
+        draw(length);
+    } else {
+        draw('')
     }
 }
 
-function changeColor(e) {
+function draw(length) {
+    container.textContent = '';
+    for (let i = 1; i <= length * length; i++) {
+        let div = document.createElement('div');
+        div.classList.add('box')
+        container.appendChild(div)
 
-    colorPicker.addEventListener('change', (e) => {
-       div.style.backgroundColor = e.target.value;
-    })
-
+    }
 }
+
+function setGrid(size) {
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = `repeat(${size},1fr)`
+    container.style.gridTemplateRows = `repeat(${size},1fr)`
+}
+getLength();

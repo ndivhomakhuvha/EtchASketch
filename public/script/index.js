@@ -1,7 +1,10 @@
+
 const container = document.querySelector('.drawingBoard');
 const color = document.querySelector('.color');
-const radio = document.querySelector('.radio')
-
+const slider = document.querySelector('.slider')
+let eraser = document.querySelector('.eraser')
+let label = document.querySelector('label')
+let length;
 
 let mousedown = false;
 document.addEventListener('mousedown', function () {
@@ -11,24 +14,37 @@ document.addEventListener('mouseup', function () {
     mousedown = false;
 })
 
-let col;
+let colorChange;
 color.addEventListener('change', function (e) {
-    col = this.value;
+    colorChange = this.value;
+})
+eraser.addEventListener('click', () => {
+    colorChange = 'white';
 })
 
 
-function getLength() {
-    radio.addEventListener('change', changeLength);
-    setGrid(80);
-}
+slider.addEventListener('change', (e) => {
+    length = Number(e.target.value)
+    label.textContent = `${length} x ${length}`
+    changeLength();
+    setGrid(length);
+})
+
+
+
 
 function changeLength() {
-    if (this.checked) {
-        let length = 80;
+    if (slider.value > 0) {
         draw(length);
     } else {
         draw('')
     }
+}
+
+function setGrid(size) {
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = `repeat(${size},1fr)`
+    container.style.gridTemplateRows = `repeat(${size},1fr)`
 }
 
 function draw(length) {
@@ -39,21 +55,12 @@ function draw(length) {
         container.appendChild(div)
         div.addEventListener('mouseenter', () => {
             if (mousedown) {
-                if (col) {
-                    div.style.background = `${col}`
+                if (colorChange) {
+                    div.style.backgroundColor = `${colorChange}`
                 }
             } else {
                 return;
             }
         })
-
     }
 }
-
-
-function setGrid(size) {
-    container.style.display = 'grid';
-    container.style.gridTemplateColumns = `repeat(${size},1fr)`
-    container.style.gridTemplateRows = `repeat(${size},1fr)`
-}
-getLength();

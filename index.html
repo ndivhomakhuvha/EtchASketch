@@ -10,15 +10,25 @@
 </head>
 
 <body>
-    <label>Place grid 
-        <input type="checkbox" class="radio" >
-    </label>
- 
-     <input type="color" class="color">
+
+
+
+    <div class="utilities">
+        <ion-icon name="power" class="eraser"></ion-icon>
+
+        <input type="color" class="color">
+    </div>
+
     <div class="drawingBoard"></div>
-    <p></p>
-  
+
+    <input type="range" min="1" max="64" class="slider">
+    <label></label>
+
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/public/script/index.js"></script>
+   
 </body>
 
 </html>

@@ -11,10 +11,23 @@ body{
     flex-direction: column;
     justify-content: center;
     gap: 20px;
+    background-color: #f3f4f6;
 }
 .box{
-    height: 10px;
-    width: 10px;
-    border: 1px solid rgba(128, 128, 128, 0.295);
-   
+   border: 1px solid rgba(128, 128, 128, 0.233);
+
+}
+.drawingBoard{
+    height: 500px;
+    width: 500px;
+    border: 1px solid rgba(128, 128, 128, 0.233);
+    background-color: white;
+    border-radius: 5px;
+}
+.utilities{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 100px;
 }

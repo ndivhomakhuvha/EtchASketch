@@ -5,6 +5,10 @@ const slider = document.querySelector('.slider')
 let eraser = document.querySelector('.eraser')
 let label = document.querySelector('label')
 let length;
+slider.addEventListener('change', (e) => {
+    console.log(e)
+})
+slider.value = 16;
 
 let mousedown = false;
 document.addEventListener('mousedown', function () {
@@ -64,3 +68,4 @@ function draw(length) {
         })
     }
 }
+//Turn eraser button on,change color when it's on, and off

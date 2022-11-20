@@ -1,71 +1,59 @@
-
 const container = document.querySelector('.drawingBoard');
 const color = document.querySelector('.color');
 const slider = document.querySelector('.slider')
-let eraser = document.querySelector('.eraser')
-let label = document.querySelector('label')
-let length;
-slider.addEventListener('change', (e) => {
-    console.log(e)
-})
-slider.value = 16;
-
-let mousedown = false;
-document.addEventListener('mousedown', function () {
-    mousedown = true;
-})
-document.addEventListener('mouseup', function () {
-    mousedown = false;
-})
-
-let colorChange;
-color.addEventListener('change', function (e) {
-    colorChange = this.value;
-})
-eraser.addEventListener('click', () => {
-    colorChange = 'white';
-})
+let length, mousedown = false, colorName;
 
 
-slider.addEventListener('change', (e) => {
-    length = Number(e.target.value)
-    label.textContent = `${length} x ${length}`
-    changeLength();
-    setGrid(length);
-})
+function setGrid(length) {
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = `repeat(${length},1fr)`
+    container.style.gridTemplateRows = `repeat(${length},1fr)`
+}
+
+function isMouseDown() {
+    document.addEventListener('mousedown', function () {
+        mousedown = true;
+    })
+    document.addEventListener('mouseup', function () {
+        mousedown = false;
+    })
+}
 
 
+function changeColor() {
+    color.addEventListener('change', function (e) {
+        colorName = this.value;
+    })
 
-
-function changeLength() {
-    if (slider.value > 0) {
-        draw(length);
+}
+function mouseAction() {
+    if (mousedown) {
+        if (colorName) {
+            this.style.background = `${colorName}`
+        }
     } else {
-        draw('')
+        return;
     }
 }
-
-function setGrid(size) {
-    container.style.display = 'grid';
-    container.style.gridTemplateColumns = `repeat(${size},1fr)`
-    container.style.gridTemplateRows = `repeat(${size},1fr)`
-}
-
-function draw(length) {
+function creatingDiv() {
     container.textContent = '';
     for (let i = 1; i <= length * length; i++) {
         let div = document.createElement('div');
         div.classList.add('box')
         container.appendChild(div)
-        div.addEventListener('mouseenter', () => {
-            if (mousedown) {
-                if (colorChange) {
-                    div.style.backgroundColor = `${colorChange}`
-                }
-            } else {
-                return;
-            }
-        })
+        div.addEventListener('mouseenter', mouseAction)
     }
 }
-//Turn eraser button on,change color when it's on, and off
+
+function draw() {
+    isMouseDown();
+    changeColor();
+    creatingDiv();
+
+}
+
+slider.addEventListener('change', (e) => {
+    length = e.target.value;
+    setGrid(length);
+    draw(length)
+})

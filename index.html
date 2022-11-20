@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/public/styles/index.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/public/styles/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Etch A Sketch</title>
-</head>
+  </head>
 
-<body>
-
-
-
-    <div class="utilities">
+  <body>
+    <div class="main">
+      <div class="utilities">
         <div class="labelContainer">
-            <p>Eraser</p>
-            <div class="eraserContainer">
-                <ion-icon name="power" class="eraser"></ion-icon>
-            </div>
+          <p>Eraser</p>
+          <div class="eraserContainer">
+            <ion-icon name="power" class="eraser"></ion-icon>
+          </div>
         </div>
         <div class="labelContainer">
-            <p>Eraser</p>
-            <input type="color" class="color">
+          <p>Color Picker</p>
+          <input type="color" class="color" />
         </div>
+        <div class="labelContainer">
+          <input type="range" min="1" max="64" class="slider" />
+          <label>16 x 16</label>
+        </div>
+      </div>
 
+      <div class="drawingBoard"></div>
     </div>
 
-    <div class="drawingBoard"></div>
-
-    <input type="range" min="1" max="64"  class="slider">
-    <label>16 x 16</label>
-
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script src="/public/script/index.js"></script>
-
-</body>
-
+  </body>
 </html>

@@ -21,10 +21,13 @@ body {
     border: 1px solid rgba(141, 141, 141, 0.164);
 
 }
+.drawing{
+    border: none;
+}
 
 .drawingBoard {
-    height: 500px;
-    width: 500px;
+    height: 600px;
+    width: 600px;
     border: 1px solid rgba(128, 128, 128, 0.233);
     background-color: white;
     border-radius: 5px;
@@ -39,7 +42,7 @@ body {
 }
 
 .color {
-    height: 15px;
+    height: 18px;
     width: 40px;
     border:2px solid black;
     border-radius: 10px;

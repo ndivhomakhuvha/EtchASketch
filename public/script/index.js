@@ -4,6 +4,7 @@ const container = document.querySelector(".drawingBoard");
 const color = document.querySelector(".color");
 const eraser = document.querySelector(".eraser");
 const eraserContainer = document.querySelector(".eraserContainer");
+let clearButton = document.querySelector('.clear')
 const slider = document.querySelector(".slider");
 const eraserOnorOff = document.querySelector('span');
 let label = document.querySelector('label');
@@ -30,8 +31,8 @@ function isMouseDown() {
 }
 
 function changeColor() {
-  color.addEventListener("change", function (e) {
-    colorName = this.value;
+  color.addEventListener("change", function () {
+    colorName = color.value;
   });
 }
 
@@ -80,10 +81,15 @@ function draw() {
   changeColor();
   creatingDiv();
 }
+function clear() {
+  draw(' ');
+}
+
 
 slider.addEventListener("change", (e) => {
   length = e.target.value;
   setGrid(length);
   draw(length);
 });
-eraser.addEventListener("click", Eraser);
+eraserContainer.addEventListener("click", Eraser);
+clearButton.addEventListener('click',clear)

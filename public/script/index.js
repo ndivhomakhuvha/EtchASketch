@@ -1,5 +1,3 @@
-let DEFAULT_COLOR;
-let DEFAULT_GRID_SIZE;
 const container = document.querySelector(".drawingBoard");
 const color = document.querySelector(".color");
 const eraser = document.querySelector(".eraser");
@@ -12,6 +10,12 @@ let length,
   mousedown = false,
   colorName, div;
 
+document.addEventListener('DOMContentLoaded', () => {
+  length = Number(slider.value);
+  colorName = color.value;
+  setGrid(length);
+  draw(length)
+})
 
 function setGrid(length) {
   container.style.display = "grid";
@@ -92,4 +96,4 @@ slider.addEventListener("change", (e) => {
   draw(length);
 });
 eraserContainer.addEventListener("click", Eraser);
-clearButton.addEventListener('click',clear)
+clearButton.addEventListener('click', clear)

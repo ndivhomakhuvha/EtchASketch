@@ -5,6 +5,8 @@ const eraserContainer = document.querySelector(".eraserContainer");
 let clearButton = document.querySelector('.clear')
 const slider = document.querySelector(".slider");
 const eraserOnorOff = document.querySelector('span');
+let name;
+let downloadButton = document.querySelector('.downloadButton')
 let label = document.querySelector('label');
 let length,
   mousedown = false,
@@ -79,6 +81,22 @@ function Eraser() {
       eraserContainer.style.backgroundColor = "rgba(255, 0, 0, 0.295)";
   }
 }
+function downloader() {
+  var doc = new jsPDF("p", "pt", "a4");
+  doc.setFontSize(14);
+
+  doc.html(container, {
+
+    callback: function (doc) {
+      doc.save(`${name}`);
+    },
+    margin:[100,0,0,0],
+    width: 50,
+    x: 0,
+    y: 0,
+  });
+}
+
 
 function draw() {
   isMouseDown();
@@ -95,5 +113,14 @@ slider.addEventListener("change", (e) => {
   setGrid(length);
   draw(length);
 });
+
+downloadButton.addEventListener('click', () => {
+  name = prompt('What is your lovers name');
+  if(name === null || name === ''){
+    name = 'For the Streets';
+  }
+  downloader();
+})
+
 eraserContainer.addEventListener("click", Eraser);
 clearButton.addEventListener('click', clear)
